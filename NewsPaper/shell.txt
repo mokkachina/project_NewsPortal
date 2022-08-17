@@ -1,142 +1,88 @@
->>> u2 = User.objects.create_user(username='Alexsandr')
-Traceback (most recent call last):
-  File "<console>", line 1, in <module>
-NameError: name 'User' is not defined
->>> from django.contrib.auth.models import User
->>> u2 = User.objects.create_user(username = 'Alexandr')
+
+>>> u1 = User.objects.create_user(username = 'Alexandr')
+>>> u2 = User.objects.create_user(username = 'Maxim')
+>>> Author.objects.create(authorUser = u1)
+<Author: Author object (1)>
 >>> Author.objects.create(authorUser = u2)
-Traceback (most recent call last):
-  File "<console>", line 1, in <module>
-NameError: name 'Author' is not defined
->>> from accounts.models import*
->>> Author.objects.create(authorUser=u2)
 <Author: Author object (2)>
->>> a = Author.objects.order_by('-rating_user')[:1]
->>> a
-<QuerySet [<Author: Author object (1)>]>
->>> a.rating_user
-Traceback (most recent call last):
-  File "<console>", line 1, in <module>
-AttributeError: 'QuerySet' object has no attribute 'rating_user'
->>> for i in a:
-...     i.rating_user
-...     i.authorUser.username
-...
-1
-'Maxim'
 >>> Category.objects.create(name = 'Music')
-<Category: Category object (2)>
+<Category: Category object (1)>
 >>> Category.objects.create(name = 'Sport')
-<Category: Category object (3)>
+<Category: Category object (2)>
 >>> Category.objects.create(name = 'Politic')
+<Category: Category object (3)>
+>>> Category.objects.create(name = 'IT')
 <Category: Category object (4)>
->>> author = Author.objects.get(id=2)
->>> author
-<Author: Author object (2)>
->>> Post.objects.create(author = author,categoryType='AR', title = 'На «Штормfest» и концерт NILETTO в Омске пришли более 35 тысяч человек', text ='На Соборной площади NILETTO исполнил перед омичами все свои хиты, среди которых были «Любимка», «Если тебе
- будет грустно», «Сколько стоит любовь» и другие. В конце певец пожелал поклонникам быть счастливыми, заниматься спортом, а также помнить его и других участников музыкального коллектива.')
-<Post: Post object (2)>
->>> author
-<Author: Author object (2)>
-
->>> Post.objects.create(author = author, categoryType = 'NW', title='Более 200 омичей поучаствовали в фестивале скандинавской ходьбы', text='«Скандинавская ходьба — это уникальный вид физической активности, который полезен для всех возрастов.')
-<Post: Post object (3)>
->>> author = Author.objects.get(id=2)
->>> author = Author.objects.get(id=1)
->>> author
-<Author: Author object (1)>
->>> Post.objects.create(author=author, categoryType='AR', title = 'В Омске загорелся памятник воинам-автомобилистам Великой Отечественной войны', text = 'В региональном МЧС России рассказали, что накануне, 14 августа, около 21:00 загорелся кузов автомоби
-ля — памятника участникам Великой Отечественной войны 1941–1945 гг.')
-<Post: Post object (4)>
-
+>>> Category.objects.create(name = 'Accidents')
 <Category: Category object (5)>
->>> Post.objects.get(id=2).postCategory.add(Category.objects.get(id=2)
 
+
+
+>>> Post.objects.create(author = Author.objects.get(id=1),categoryType='AR',title = 'На «Штормfest» и концерт NILETTO в Омске пришли более 35 тысяч человек', text ='На Соборной площади NILETTO исполнил перед омичами все свои хиты, среди которых были «Люб
+имка», «Если тебе будет грустно», «Сколько стоит любовь» и другие. В конце певец пожелал поклонникам быть счастливыми, заниматься спортом, а также помнить его и других участников музыкального коллектива.')
+<Post: Alexandr>
+
+ Post.objects.create(author = Author.objects.get(id=2), categoryType = 'NW', title='Более 200 омичей поучаствовали в фестивале скандинавской ходьбы', text='«Скандинавская ходьба — это уникальный вид физической активности, который полезен для всех возр
+астов.')
+<Post: Maxim>
+Post.objects.create(author=Author.objects.get(id=1), categoryType='AR', title = 'В Омске загорелся памятник воинам-автомобилистам Великой Отечественной войны', text = 'В региональном МЧС России рассказали, что накануне, 14 августа, около 21:00 загоре
+лся кузов автомобиля — памятника участникам Великой Отечественной войны 1941–1945 гг.')
+<Post: Alexandr>
+ Post.objects.get(id=1).postCategory.add(Category.objects.get(id=1))
+>>> Post.objects.get(id=1).postCategory.add(Category.objects.get(id=2))
 >>> Post.objects.get(id=2).postCategory.add(Category.objects.get(id=2))
->>> Post.objects.get(id=2).postCategory.add(Category.objects.get(id=3))
->>> Post.objects.get(id=3).postCategory.add(Category.objects.get(id=3))
->>> Post.objects.get(id=4).postCategory.add(Category.objects.get(id=5))
->>> Post.objects.get(id=4).postCategory.add(Category.objects.get(id=4))
->>> Comment.objects.create(commentPost=Post.objects.get(id=2),commentUser=Author.objects.get(id=1).authorUser, text = 'cool musik')
+>>> Post.objects.get(id=3).postCategory.add(Category.objects.get(id=5))
+>>> Comment.objects.create(commentPost=Post.objects.get(id=1),commentUser=Author.objects.get(id=2).authorUser, text = 'cool musik')
+<Comment: Comment object (1)>
+>>> Comment.objects.create(commentPost=Post.objects.get(id=2),commentUser=Author.objects.get(id=1).authorUser, text = 'verry good')
 <Comment: Comment object (2)>
->>> Comment.objects.create(commentPost=Post.objects.get(id=2),commentUser=Author.objects.get(id=2).authorUser, text = 'verry good')
+>>> Comment.objects.create(commentPost=Post.objects.get(id=2),commentUser=Author.objects.get(id=2).authorUser, text = 'sport it is life')
 <Comment: Comment object (3)>
->>> Comment.objects.create(commentPost=Post.objects.get(id=3),commentUser=Author.objects.get(id=1).authorUser, text = 'sport it is life')
+>>> Comment.objects.create(commentPost=Post.objects.get(id=3),commentUser=Author.objects.get(id=1).authorUser, text = 'curious')
 <Comment: Comment object (4)>
->>> Comment.objects.create(commentPost=Post.objects.get(id=4),commentUser=Author.objects.get(id=2).authorUser, text = 'curious')
-<Comment: Comment object (5)>
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).rating
+5
 >>> Comment.objects.get(id=2).like()
 >>> Comment.objects.get(id=2).like()
 >>> Comment.objects.get(id=2).like()
 >>> Comment.objects.get(id=2).rating
 3
->>> Comment.objects.get(id=2).dislike()
->>> Comment.objects.get(id=2).rating
+>>> Comment.objects.get(id=3).dislike()
+>>> Comment.objects.get(id=3).dislike()
+>>> Comment.objects.get(id=3).dislike()
+>>> Comment.objects.get(id=3).dislike()
+>>> Comment.objects.get(id=3).rating
+-4
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).rating
 2
->>>
->>> Post.objects.get(id=3).like()
->>> Post.objects.get(id=3).like()
->>> Post.objects.get(id=3).like()
 >>> Post.objects.get(id=2).like()
 >>> Post.objects.get(id=2).like()
->>> Post.objects.get(id=4).dislike()
->>> Post.objects.get(id=4).rating
--1
->>> Post.objects.get(id=3).rating
-3
+>>> Post.objects.get(id=2).like()
 >>> Post.objects.get(id=2).rating
-2
->>>
->>> Author.object.get(id=1)
-Traceback (most recent call last):
-  File "<console>", line 1, in <module>
-AttributeError: type object 'Author' has no attribute 'object'
->>> Author.objects.get(id=1)
-<Author: Author object (1)>
+3
+>>> Post.objects.get(id=3).like
+<bound method Post.like of <Post: Alexandr>>
+>>> Post.objects.get(id=3).like()
+>>> Post.objects.get(id=3).like()
+>>> Post.objects.get(id=3).dislike()
+>>> Post.objects.get(id=3).rating
+1
 >>> a =Author.objects.get(id=1)
 >>> a.update_rating()
 >>> a.rating_user
-0
->>>
->>> b = Author.objects.get(id=2)
->>> b.update_rating()
->>> b.rating_user
-15
->>> for i in a:
-...     i.rating_user
-...     i.autorUser.username
-...
-15
->>> for i in a:
-...     i.rating_user
-...     i.authorUser.username
-...
-15
-'Alexandr'
->>>
->>> Comment.objects.get(id=3).like()
->>> Comment.objects.get(id=3).like()
->>> Comment.objects.get(id=3).like()
->>> Comment.objects.get(id=3).like()
->>> Comment.objects.get(id=4).like()
->>> Comment.objects.get(id=4).like()
->>> Comment.objects.get(id=4).like()
->>> Comment.objects.get(id=4).like()
->>> Comment.objects.get(id=4).like()
->>> Comment.objects.get(id=5).dislike()
->>> Comment.objects.get(id=5).dislike()
->>> Comment.objects.get(id=5).dislike()
->>> Comment.objects.get(id=5).dislike()
->>> Comment.objects.get(id=5).dislike()
- a = Author.objects.get(id=1)
->>> a.update_rating()
->>> a.rating_user
-5
->>> a = Author.objects.get(id=2)
->>> a.update_rating()
->>> a.rating_user
-14
+12
 
+>>> a =Author.objects.get(id=2)
+>>> a.update_rating()
+>>> a.rating_user
+10
 >>> a = Comment.objects.order_by('-rating')[:1]
 >>> for i in a:
 ...     i.rating
@@ -144,18 +90,24 @@ AttributeError: type object 'Author' has no attribute 'object'
 ...
 5
 'Maxim'
-
->>> a = Comment.objects.filter(commentPost = 2)
->>> a.values('text')
-<QuerySet [{'text': 'cool musik'}, {'text': 'verry good'}]>
->>> a.values('dataCreation','commentUser','rating','text')
-<QuerySet [{'dataCreation': datetime.datetime(2022, 8, 15, 5, 32, 9, 783004, tzinfo=datetime.timezone.utc), 'commentUser': 1, 'rating': 2, 'text': 'cool musik'},
-{'dataCreation': datetime.datetime(2022, 8, 15, 5, 34, 41, 407924, tzinfo=datetime.timezone.
-utc), 'commentUser': 2, 'rating': 4, 'text': 'verry good'}]>
-
+ a = Post.objects.order_by('-rating')[:1]
+>>> for i in a:
+...     i.rating
+...     i.previwe()
+...
+3
+'«Скандинавская ходьба — это уникальный вид физической активности, который полезен для всех возрастов....'
+>>> for i in a:
+...     i.author
+...     i.rating
+...     i.previwe()
+...     i.title
+...
+<Author: Author object (2)>
+3
+'«Скандинавская ходьба — это уникальный вид физической активности, который полезен для всех возрастов....'
+'Более 200 омичей поучаствовали в фестивале скандинавской ходьбы'
 >>> Comment.objects.all().values('dataCreation', 'commentUser','rating','text')
-<QuerySet [{'dataCreation': datetime.datetime(2022, 8, 14, 11, 58, 46, 584860, tzinfo=datetime.timezone.utc), 'commentUser': 1, 'rating': -2, 'text': 'some tex author comment'}, {'dataCreation': datetime.datetime(2022, 8, 15, 5, 32, 9, 783004, tzinfo=dat
-etime.timezone.utc), 'commentUser': 1, 'rating': 2, 'text': 'cool musik'}, {'dataCreation': datetime.datetime(2022, 8, 15, 5, 34, 41, 407924, tzinfo=datetime.timezone.utc), 'commentUser': 2, 'rating': 4, 'text': 'verry good'}, {'dataCreation': datetime.d
-atetime(2022, 8, 15, 5, 37, 49, 18079, tzinfo=datetime.timezone.utc), 'commentUser': 1, 'rating': 5, 'text': 'sport it is life'}, {'dataCreation': datetime.datetime(2022, 8, 15, 5, 40, 30, 940888, tzinfo=datetime.timezone.utc), 'commentUser': 2, 'rating'
-: -5, 'text': 'curious'}]>
-
+<QuerySet [{'dataCreation': datetime.datetime(2022, 8, 17, 11, 24, 52, 444876, tzinfo=datetime.timezone.utc), 'commentUser': 2, 'rating': 5, 'text': 'cool musik'}, {'dataCreation': datetime.datetime(2022, 8, 17, 11, 25, 52, 425894, tzinfo=datetime.timezo
+ne.utc), 'commentUser': 1, 'rating': 3, 'text': 'verry good'}, {'dataCreation': datetime.datetime(2022, 8, 17, 11, 27, 20, 648299, tzinfo=datetime.timezone.utc), 'commentUser': 2, 'rating': -4, 'text': 'sport it is life'}, {'dataCreation': datetime.datet
+ime(2022, 8, 17, 11, 29, 3, 63120, tzinfo=datetime.timezone.utc), 'commentUser': 1, 'rating': 0, 'text': 'curious'}]>

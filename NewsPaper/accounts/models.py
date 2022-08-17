@@ -45,6 +45,9 @@ class Post(models.Model):
     def previwe(self):
         return self.text[0:123] + "..."
 
+    def __str__(self):
+        return f'{self.author.authorUser.username}'
+
 
 class PostCategory(models.Model):
     postThrough = models.ForeignKey(Post, on_delete=models.CASCADE)
