@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import*
 from datetime import datetime
+from django.views.generic import FormView, CreateView
+from django.http import HttpResponse
 from pprint import pprint
 
 class NewsPaper(ListView):
