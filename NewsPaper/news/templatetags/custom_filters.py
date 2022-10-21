@@ -14,3 +14,4 @@ def censor(text):
                 f'{word[0]}{"*" * (len(word) - 1)}'
             )
     return text
+

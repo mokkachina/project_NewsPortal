@@ -1,0 +1,39 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_tags %}
+{% load custom_filters %}
+
+{% block title %}
+Articles
+{% endblock title %}
+
+{% block content %}
+   <h1>Все статьи:{{article_list|length}}</h1>
+   <h3>{{ time_now|date:'M d Y' }}</h3>
+
+
+   <hr>
+   {% if articl %}
+       <table>
+           <tr>
+               <td>Статья</td>
+               <td>Дата публикации</td>
+               <td>Текст</td>
+               <td>Категория</td>
+               <td>Рейтинг</td>
+           </tr>
+
+           {% for art in articl %}
+           <tr>
+               <td>{{ art.title }}</td>
+               <td>{{ art.dataCreation|date:'d M Y' }}</td>
+               <td>{{ art.text|truncatechars:20  }}</td>
+               <td>{{ art.postCategory }}</td>
+               <td>{{ art.rating }}</td>
+           </tr>
+           {% endfor %}
+
+       </table>
+   {% else %}
+       <h2>Статей, нет!</h2>
+   {% endif %}
+{% endblock content %}
