@@ -1,0 +1,24 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Posts
+{% endblock title %}
+
+
+{% block content %}
+<h1> {{ new_detail.title|censor }} </h1>
+
+<hr>
+       {% if new_detail.id %}
+              <h3>{{ new_detail.text|censor }}</h3>
+       {% else %}
+              <h2>новостей, нет!</h2>
+       {% endif %}
+<hr>
+
+<h5>{{ new_detail.dataCreation|date:'d M Y' }}</h5>
+<h6>рейтинг:{{ new_detail.rating }}</h6>
+
+{% endblock content %}

@@ -6,6 +6,8 @@ from datetime import datetime
 from django.views.generic import FormView, CreateView, UpdateView, DeleteView
 from .forms import PostForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 from django.http import HttpResponse
 from pprint import pprint
 
@@ -63,9 +65,9 @@ class NewsDetail(DetailView):
     # Модель всё та же, но мы хотим получать информацию по отдельному
     model = Post
 
-    template_name = 'news.html'
+    template_name = 'news_detail.html'
     # Название объекта, в котором будет выбранный пользователем
-    context_object_name = 'new_det'
+    context_object_name = 'new_detail'
 
 class PostSearch(ListView):
 
@@ -107,4 +109,5 @@ class PostDelete(DeleteView):
     model = Post
     template_name = 'delete.html'
     success_url = reverse_lazy('new_list')
-
+class ProtectedView(LoginRequiredMixin, TemplateView):
+    template_name = 'prodected_page.html'
