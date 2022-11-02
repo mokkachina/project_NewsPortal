@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("accounts/", include("allauth.urls")),
+    # path("accounts/", include("accounts.urls")),
+    # path('accounts/', include('django.contrib.auth.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('news/', include('news.urls')),
     path('articles/', include('news.urls')),
-    # path('/search/', include('search.urls')),
+
 ]
+

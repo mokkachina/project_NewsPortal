@@ -1,6 +1,6 @@
 from django.urls import path
 # Импортируем созданное нами представление
-from .views import NewsPaper, NewsDetail, PostSearch, PostEdit, PostCreate, PostDelete, ArticlesPaper
+from .views import*
 from .forms import create_post
 urlpatterns = [
    # path — означает путь.
@@ -13,7 +13,7 @@ urlpatterns = [
     path('<int:pk>', NewsDetail.as_view(), name='new_detail'),
     path('<int:pk>', PostSearch.as_view()),
     path('search/', PostSearch.as_view(), name='new_search'),
-    path('create/', PostCreate.as_view(), name="new_create"),
+    path('create/', PostCreate.as_view(), name='new_create'),
 
     path('<int:pk>/edit/', PostEdit.as_view(), name='new_edit'),
     path('<int:pk>/delete/', PostDelete.as_view(), name='new_delete'),

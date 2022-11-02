@@ -8,7 +8,8 @@ from .forms import PostForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from pprint import pprint
 
 class NewsPaper(ListView):
@@ -35,6 +36,9 @@ class NewsPaper(ListView):
         # context['next_sale'] = None
         # pprint(context)
         return context
+
+    def pageNotFound(request, exception):
+        return HttpResponseNotFound('<h1>Страница не найдена </h1>')
 
 class ArticlesPaper(ListView):
     queryset = Post.objects.filter(categoryType='AR')
@@ -86,7 +90,8 @@ class PostSearch(ListView):
         context['time_now'] = datetime.utcnow()
         return context
 
-class PostCreate(CreateView):
+class PostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
     # Указываем нашу разработанную форму
     form_class = PostForm
     # модель товаров
@@ -100,14 +105,19 @@ class PostCreate(CreateView):
     #     return super().form_valid(form)
 
 
-class PostEdit(UpdateView):
+class PostEdit(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     form_class = PostForm
     model = Post
-    template_name = 'edit.html'
+    template_name = 'create.html'
 
-class PostDelete(DeleteView):
+class PostDelete(PermissionRequiredMixin,DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'delete.html'
+    context_object_name = 'news'
     success_url = reverse_lazy('new_list')
+
 class ProtectedView(LoginRequiredMixin, TemplateView):
+    raise_exception = True
     template_name = 'prodected_page.html'

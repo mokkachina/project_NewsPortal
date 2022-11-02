@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
    class Meta:
        model = Post
        fields = [
-          'author',
+           'author',
           'categoryType',
           'postCategory',
           'title',
@@ -34,11 +34,11 @@ def create_edit(request):
 
 def create_delete(request):
     pass
-# class ProductForm(forms.Form):
-#     name = forms.CharField(label='Name')
-#     description = forms.CharField(label='Description')
-#     quantity = forms.IntegerField(label='Quantity')
-#     category = forms.ModelChoiceField(
+# class PostForm(forms.Form):
+#     author = forms.CharField(label='Name')
+#     categoryType = forms.CharField(label='Description')
+#     title = forms.IntegerField(label='Quantity')
+#     postCategory = forms.ModelChoiceField(
 #         label='Category', queryset=Category.objects.all(),
 #     )
-#     price = forms.FloatField(label='Price')
+#     text = forms.FloatField(label='Price')

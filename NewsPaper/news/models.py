@@ -54,19 +54,22 @@ class Post(models.Model):
         return self.text[0:123] + "..."
 
     def __str__(self):
-        return f'{self.author.authorUser.username}:  {self.title} '
+        return f'{self.author.authorUser.username}: {self.title}: {self.categoryType}'
 
     # def __str__(self):
     #     return f' {self.postCategory.name}'
 
+    # def get_success_url(self):
+    #     return reverse('new_create', kwargs={'pk': self.kwargs['pk']})
     def get_absolute_url(self):
         return reverse('new_detail', args=[str(self.id)])
-
 
 class PostCategory(models.Model):
     postThrough = models.ForeignKey(Post, on_delete=models.CASCADE)
     categoryThrough = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.postThrough} {self.categoryThrough}'
 
 
 class Comment(models.Model):

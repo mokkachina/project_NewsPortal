@@ -12,40 +12,48 @@
 <h1>Все новости:{{news|length}}</h1>
 
 
-<!--<form action="" method="get" >-->
-<!--    {{ filterset.form.non_field_errors }}-->
 
-<!--    {{ filterset.form.text__icontains.errors }}-->
-<!--    <label for="{{ filterset.form.title__icontains.pk_for_label }}">Поиск</label>-->
-<!--    <input-->
-<!--        id="{{ filterset.form.title__icontains.pk_for_label }}"-->
-<!--        name="{{ filterset.form.title__icontains.name }}"-->
-<!--        value="{{ filterset.form.title__icontains.value }}"-->
-<!--        class="form-control"-->
-
-<!--    >-->
-<!--    <input type="submit" class="mt-3 btn-primary" value="Найти" />-->
-<!--</form>-->
 
  <h3>{{ time_now|date:'d M Y' }}</h3>
 <hr>
+
+    {% if perms.news.add_post %}
+    <a href="{% url 'new_create' %}">Добавить пост</a>
+    {% endif %}
    {% if news %}
        <table>
            <tr>
-               <td>Новость</td>
+               <td>Категория</td>
+               <td>Заголовок</td>
                <td>Дата публикации</td>
                <td>Содержание</td>
+
+                {% if perms.news.change_post or perms.news.delete_post %}
+                <td>Действия</td>
+                {% endif %}
+
+
            </tr>
            {% for new in news %}
            <tr>
+               <td>{{ new.get_categoryType_display }}</td>
                <td>{{ new.title }}</td>
                <td>{{ new.dataCreation|date:'d M Y'}}</td>
                <td>{{ new.text|censor|truncatechars:20 }}</td>
+                <td>
+                    {% if perms.news.change_post %}
+                    <a href="{% url 'new_edit' pk=new.id %}">Изменить</a>
+                    {% endif %}
+                    {% if perms.news.delete_post %}
+                    <a href="{% url 'new_delete' new.id %}">Удалить</a>
+                    {% endif %}
+                    <a href="{% url 'new_detail' new.id %}">Читать</a>
+                </td>
            </tr>
            {% endfor %}
        </table>
    {% else %}
-       <h2>новостей, нет!</h2>
+       <h2>Новостей, нет!</h2>
    {% endif %}
  {% if page_obj.has_previous %}
         <a href="?{% url_replace page=1 %}">1</a>
