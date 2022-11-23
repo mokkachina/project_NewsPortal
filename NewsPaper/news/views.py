@@ -10,6 +10,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from pprint import pprint
 
 class NewsPaper(ListView):
@@ -121,3 +124,28 @@ class PostDelete(PermissionRequiredMixin,DeleteView):
 class ProtectedView(LoginRequiredMixin, TemplateView):
     raise_exception = True
     template_name = 'prodected_page.html'
+
+class CategoryListView(ListView):
+
+    model = Post
+    template_name = 'category_list.html'
+    context_object_name = 'category_news_list'
+
+    def get_queryset(self):
+        self.postCategory = get_object_or_404(Category, id=self.kwargs['pk'])
+        queryset = Post.objects.filter(postCategory=self.postCategory).order_by('-dataCreation')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_subscriber'] = self.request.user not in self.postCategory.subscribers.all()
+        context['category'] = self.postCategory
+        return context
+@login_required
+def subscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.add(user)
+
+    message = 'Вы подписались на: '
+    return render(request, 'subscribe.html', {'message': message, 'category': category.name})

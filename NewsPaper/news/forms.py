@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
    class Meta:
        model = Post
        fields = [
-           'author',
+          'author',
           'categoryType',
           'postCategory',
           'title',
@@ -27,13 +27,13 @@ def create_post(request):
 
     return render(request, 'create.html', {'form': form})
 
-def create_edit(request):
+# def create_edit(request):
+#
+#     pass
 
-    pass
-
-
-def create_delete(request):
-    pass
+#
+# def create_delete(request):
+#     pass
 # class PostForm(forms.Form):
 #     author = forms.CharField(label='Name')
 #     categoryType = forms.CharField(label='Description')
