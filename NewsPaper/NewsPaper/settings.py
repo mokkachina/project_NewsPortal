@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+    'django_apscheduler',
 ]
 # LOGIN_URL = '/accounts/login/'
 DEFAULT_FROM_EMAIL = 'maxiklim@inbox.ru'
@@ -166,8 +167,10 @@ EMAIL_USE_SSL = True
 EMAIL_TIMEOUT = 60
 
 ADMINS = [
-    ('maxiklim', 'maxiklim@mail.ru'),
+    ('maxiklim', 'maxiklim@inbox.ru'),
     # список всех админов в формате ('имя', 'их почта')
 ]
 SERVER_EMAIL = 'maxiklim@yandex.ru'
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + '@yandex.ru'
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25

@@ -13,6 +13,7 @@
 
     {% if is_not_subscriber %}
         <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">Подписаться?</a> </p>
+
     {% endif %}
 
  <h3>{{ time_now|date:'d M Y' }}</h3>

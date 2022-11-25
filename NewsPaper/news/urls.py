@@ -21,6 +21,7 @@ urlpatterns = [
     # path('articles/', ArticlesPaper.as_view, name='article_list'),
     path('categories/<int:pk>/', CategoryListView.as_view(), name='category_list'),
     path('categories/<int:pk>/subscribers', subscribe, name='subscribe'),
+    # path('categories/<int:pk>/subscribers', subscribe_delete, name='subscribe_delete'),
 ]
 
 #     path('articles/create/', PostCreateArticles.as_view(), name='post_ar_create'),

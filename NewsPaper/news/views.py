@@ -148,4 +148,12 @@ def subscribe(request, pk):
     category.subscribers.add(user)
 
     message = 'Вы подписались на: '
-    return render(request, 'subscribe.html', {'message': message, 'category': category.name})
+    return render(request, 'subscribe.html', {'message': message, 'category': category})
+# @login_required
+# def subscribe_delete(request, pk):
+#     user = request.user
+#     category = Category.objects.get(id=pk)
+#     category.subscribers.remove(user)
+#
+#     message = 'Вы отписались от: '
+#     return render(request, 'subscribe.html', {'message': message, 'category': category})
