@@ -156,4 +156,16 @@ def subscribe(request, pk):
 #     category.subscribers.remove(user)
 #
 #     message = 'Вы отписались от: '
-#     return render(request, 'subscribe.html', {'message': message, 'category': category})
+#     return render(request, 'subscribe_delete.html', {'message': message, 'category': category})
+# @login_required
+# def upgrade_user(request):
+#     user = request.user
+#     group = Group.objects.get(name='authors')
+#     if not request.user.groups.filter(name='authors').exists():
+#         group.user_set.add(user)
+#         if not hasattr(user, 'author'):
+#             Author.objects.create(
+#                 authorUser=User.objects.get(pk=user.id)
+#             )
+#     return redirect('/')
+
