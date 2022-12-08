@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import*
 from .filters import PostFilter
-from datetime import datetime
-from django.views.generic import FormView, CreateView, UpdateView, DeleteView
+from datetime import datetime, timedelta
+from django.views.generic import FormView, CreateView, UpdateView, DeleteView, View
 from .forms import PostForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,8 +12,16 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+# from .tasks import hello, printer
 from django.core.mail import send_mail
 from pprint import pprint
+
+# class IndexView(View):
+#     def get(self, request):
+#         printer.apply_async([10],
+#                             eta = datetime.now() + timedelta(seconds=5))
+#         hello.delay()
+#         return HttpResponse('Hello!')
 
 class NewsPaper(ListView):
     # queryset = Post.objects.filter(rating__lt=20.0).values('author')
@@ -168,4 +176,6 @@ def subscribe(request, pk):
 #                 authorUser=User.objects.get(pk=user.id)
 #             )
 #     return redirect('/')
+
+
 
