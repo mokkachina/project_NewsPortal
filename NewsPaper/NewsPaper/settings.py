@@ -274,7 +274,7 @@ LOGGING = {
             'level': 'DEBUG',
         },
         'django.security': {
-            'handlers': ['error_critical'],
+            'handlers': ['security_log'],
             'level': 'INFO',
             'propagate': False
         },
