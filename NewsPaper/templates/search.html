@@ -1,6 +1,7 @@
 {% extends 'flatpages/default.html' %}
 {% load custom_filters %}
 {% load custom_tags %}
+{% load cache %}
 
 {% block title %}
 Posts
@@ -10,7 +11,7 @@ Posts
 {% block content %}
 
 <h1>Все новости:{{title|length}}</h1>
-
+{% cache 30 form %}
     <form action="" method="get">
 
 
@@ -19,6 +20,7 @@ Posts
         <input type="submit" value="Найти" />
 <!--        <input type="datetime-local">-->
    </form>
+ {% endcache %}
 <h3>{{ time_now|date:'d M Y' }}</h3>
 
 

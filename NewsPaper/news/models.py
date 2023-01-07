@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.urls import reverse
 from django.core.validators import MinValueValidator
-
+from django.core.cache import cache
 
 
 class Author(models.Model):
@@ -64,6 +64,10 @@ class Post(models.Model):
     #     return reverse('new_create', kwargs={'pk': self.kwargs['pk']})
     def get_absolute_url(self):
         return reverse('new_detail', args=[str(self.id)])
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # сначала вызываем метод родителя, чтобы объект сохранился
+        cache.delete(f'product-{self.pk}')  # затем удаляем его из кэша, чтобы сбросить его
 
 class PostCategory(models.Model):
     postThrough = models.ForeignKey(Post, on_delete=models.CASCADE)

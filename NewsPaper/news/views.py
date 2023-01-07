@@ -12,6 +12,11 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 # from .tasks import hello, printer
 from django.core.mail import send_mail
 from pprint import pprint
@@ -25,6 +30,7 @@ from pprint import pprint
 
 class NewsPaper(ListView):
     # queryset = Post.objects.filter(rating__lt=20.0).values('author')
+
     model = Post
     # ordering = "categoryType"
     # queryset = Post.objects.get('NW')

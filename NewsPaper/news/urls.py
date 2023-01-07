@@ -1,6 +1,7 @@
 from django.urls import path
 # Импортируем созданное нами представление
 from .views import*
+from django.views.decorators.cache import cache_page
 from .forms import create_post
 urlpatterns = [
    # path — означает путь.
@@ -9,8 +10,8 @@ urlpatterns = [
    # Т.к. наше объявленное представление является классом,
    # а Django ожидает функцию, нам надо представить этот класс в виде view.
    # Для этого вызываем метод as_view.
-    path('', NewsPaper.as_view(), name='new_list'),
-    path('<int:pk>', NewsDetail.as_view(), name='new_detail'),
+    path('', cache_page(60*1)(NewsPaper.as_view()), name='new_list'),
+    path('<int:pk>', cache_page(60*5)(NewsDetail.as_view()), name='new_detail'),
     path('<int:pk>', PostSearch.as_view()),
     path('search/', PostSearch.as_view(), name='new_search'),
     path('create/', PostCreate.as_view(), name='new_create'),

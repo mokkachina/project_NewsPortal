@@ -64,7 +64,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = "NewsPaper.urls"
@@ -182,3 +185,119 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 # CELERY_TIMEZONE ='Europe/'
 CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CACHES = {
+    'default': {
+        # 'TIMEOUT': 60,  # добавляем стандартное время ожидания в минуту (по умолчанию это 5 минут — 300 секунд)
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache_files'), # Указываем, куда будем сохранять кэшируемые файлы! Не забываем создать папку cache_files внутри папки с manage.py!
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+
+    'formatters': {
+        'debug_console': {
+            'format': '%(levelname)s %(asctime)s %(message)s'
+        },
+        'warning_console': {
+            'format': '%(levelname)s %(asctime)s %(message)s %(pathname)s'
+        },
+        'error_critical': {
+            'format': '%(asctime)s %(levelname)s  %(message)s %(pathname)s %(exc_info)s'
+        },
+        'general_log': {
+            'format': '%(asctime)s %(levelname)s %(module)s %(message)s'
+        },
+
+        'security_log': {
+            'format': '%(asctime)s %(levelname)s  %(module)s  %(message)s'
+        },
+        'mail_admins': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s'
+        },
+    },
+
+
+    'handlers': {
+        'debug_console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_false'],
+            'class': 'logging.StreamHandler',
+        },
+        'general_log': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+            'formatter': 'general_log',
+            'filters': ['require_debug_false'],
+        },
+        'warning_console': {
+            'level': 'WARNING',
+            'formatter': 'warning_console',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+        'error_critical': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'errors.log',
+            'formatter': 'error_critical',
+            # 'filters': ['require_debug_false'],
+        },
+        'security_log': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'security.log',
+            'formatter': 'security_log',
+            # 'filters': ['require_debug_false'],
+        },
+         'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['general_log', 'debug_console', 'warning_console', 'error_critical'],
+            'level': 'DEBUG',
+        },
+        'django.security': {
+            'handlers': ['error_critical'],
+            'level': 'INFO',
+            'propagate': False
+        },
+        'django.db.backends': {
+            'handlers': ['error_critical'],
+            'level': 'ERROR',
+            'propagate': False
+        },
+        'django.template': {
+            'handlers': ['error_critical'],
+            'level': 'ERROR',
+            'propagate': False
+        },
+        'django.server': {
+            'handlers': ['error_critical', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': False
+        },
+        'django.request': {
+            'handlers': ['error_critical', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': False
+        },
+
+    },
+}
