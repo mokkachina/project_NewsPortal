@@ -13,6 +13,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 import logging
+from django.utils.translation import gettext as _
+from django.utils.translation import pgettext_lazy
 
 logger = logging.getLogger(__name__)
 
