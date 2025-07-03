@@ -21,6 +21,13 @@ class AuthorAdmin(TranslationAdmin):
 class CommentAdmin(TranslationAdmin):
     model = Comment
 
+class CategorytAdmin(TranslationAdmin):
+
+    model = Category
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('user', 'category', 'subscribed', 'date_subscribed')
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Author)
 admin.site.register(Comment)

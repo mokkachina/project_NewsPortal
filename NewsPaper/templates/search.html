@@ -2,37 +2,70 @@
 {% load custom_filters %}
 {% load custom_tags %}
 {% load cache %}
+{% load i18n %}
 
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Bare - Start Bootstrap Template</title>
+        <!-- Favicon-->
+         {% load static %}
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <style>
+        body {background-color: {% if current_time.hour >= 19 or current_time.hour <= 7 %} darkcyan {% else %} powderblue {% endif %};}
+        </style>
+    </head>
+    <body>
 {% block title %}
 Posts
 {% endblock title %}
 
 
 {% block content %}
+<form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+        <input type="hidden" name="next" value="{{ redirect_to }}">
 
-<h1>Все новости:{{title|length}}</h1>
-{% cache 30 form %}
+        <select name="language" id="">
+            {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+            {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+
+            {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                    {{ language.name_local }} - {{ language.code }}
+                </option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="set">
+    </form>
+
+<h1>{% trans 'All news' %}:{{search|length}}</h1>
+
     <form action="" method="get">
 
 
      {{ filterset.form.as_p }}
 
-        <input type="submit" value="Найти" />
+        <input type="submit" value=  "Найти" />
 <!--        <input type="datetime-local">-->
    </form>
- {% endcache %}
-<h3>{{ time_now|date:'d M Y' }}</h3>
+
+<h3>{{ current_time|date:'d M Y' }}</h3>
 
 
 <hr>
-   {% if title %}
+   {% if search %}
        <table>
            <tr>
-               <td>Новость</td>
-               <td>Дата публикации</td>
-               <td>Содержание</td>
+               <td>{% trans 'News' %}</td>
+               <td>{% trans 'Publication date' %}</td>
+               <td>{% trans 'Content' %}</td>
            </tr>
-           {% for new in title %}
+           {% for new in search %}
            <tr>
                <td>{{ new.title }}</td>
                <td>{{ new.dataCreation|date:'d M Y'}}</td>
@@ -41,7 +74,7 @@ Posts
            {% endfor %}
        </table>
    {% else %}
-       <h2>новостей, нет!</h2>
+       <h2>{% trans 'No, news!' %}</h2>
    {% endif %}
  {% if page_obj.has_previous %}
         <a href="?{% url_replace page=1 %}">1</a>
@@ -60,3 +93,5 @@ Posts
 {% endif %}
 
 {% endblock content %}
+   </body>
+</html>

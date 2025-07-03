@@ -1,7 +1,8 @@
 {% extends 'flatpages/default.html' %}
 {% load custom_filters %}
 {% load custom_tags %}
-
+{% load i18n %}
+{% load tz %}
 
 {% block title %}
 <!--Posts-->
@@ -9,28 +10,44 @@
 
 
 {% block content %}
-<h1>Все новости:{{news|length}}</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page title</title>
+
+</head>
+<body>
+    {% for model in Post %}
+    <div class="model-class">
+        {{ model.name }}
+
+    </div>
+    {% endfor %}
+
+<h1>{% trans 'All news' %}:{{news|length}}</h1>
 
 
 
 
- <h3>{{ time_now|date:'d M Y' }}</h3>
+
 <hr>
 
     {% if perms.news.add_post %}
-    <a href="{% url 'new_create' %}">Добавить пост</a>
+    <a href="{% url 'new_create' %}">{% trans 'Add post' %}</a>
     {% endif %}
    {% if news %}
        <table>
            <tr>
-               <td>Тип</td>
-               <td>Заголовок</td>
-               <td>Дата публикации</td>
-               <td>Содержание</td>
-               <td>Категория</td>
+               <td>{% trans 'Type' %}</td>
+               <td>{% trans 'Header' %}</td>
+               <td>{% trans 'Publication date' %}</td>
+               <td>{% trans 'Content' %}</td>
+               <td>{% trans 'Category' %}</td>
 
                 {% if perms.news.change_post or perms.news.delete_post %}
-                <td>Действия</td>
+                <td>{% trans 'Actions' %}</td>
                 {% endif %}
 
 
@@ -50,18 +67,18 @@
 
                 <td>
                     {% if perms.news.change_post %}
-                    <a href="{% url 'new_edit' pk=new.id %}">Изменить</a>
+                    <a href="{% url 'new_edit' pk=new.id %}">{% trans 'Change' %}</a>
                     {% endif %}
                     {% if perms.news.delete_post %}
-                    <a href="{% url 'new_delete' new.id %}">Удалить</a>
+                    <a href="{% url 'new_delete' new.id %}">{% trans 'Delete' %}</a>
                     {% endif %}
-                    <a href="{% url 'new_detail' new.id %}">Читать</a>
+                    <a href="{% url 'new_detail' new.id %}">{% trans 'Read' %}</a>
                 </td>
            </tr>
            {% endfor %}
        </table>
    {% else %}
-       <h2>Новостей, нет!</h2>
+       <h2>{% trans 'No, news!' %}</h2>
    {% endif %}
  {% if page_obj.has_previous %}
         <a href="?{% url_replace page=1 %}">1</a>
@@ -79,3 +96,5 @@
        {% endif %}
 {% endif %}
 {% endblock content %}
+</body>
+</html>

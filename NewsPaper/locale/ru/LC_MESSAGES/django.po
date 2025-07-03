@@ -8,44 +8,125 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-11 11:43+0600\n"
+"POT-Creation-Date: 2023-01-24 21:12+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
-#: .\templates\flatpages\default.html:33 .\templates\flatpages\default.html:37
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\news\filters.py:11 .\templates\news.html:47
+msgid "Category"
+msgstr "Категория"
+
+#: .\news\filters.py:12
+msgid "all"
+msgstr "все"
+
+#: .\news\filters.py:18
+msgid "Create after"
+msgstr "После создания"
+
+#: .\news\filters.py:37 .\news\forms.py:24
+msgid "title"
+msgstr "Заголовок"
+
+#: .\news\forms.py:21
+msgid "author"
+msgstr "Автор"
+
+#: .\news\forms.py:22
+msgid "categoryType"
+msgstr "Тип категории"
+
+#: .\news\forms.py:23
+msgid "postCategory"
+msgstr "Категория поста"
+
+#: .\news\forms.py:25
+msgid "text"
+msgstr "Текст"
+
+#: .\templates\create.html:25
+msgid "Create post"
+msgstr "Создать пост"
+
+#: .\templates\flatpages\default.html:54
 msgid "News Paper"
 msgstr "Газета"
 
-#: .\templates\flatpages\default.html:48
+#: .\templates\flatpages\default.html:65 .\templates\search.html:64
 msgid "News"
-msgstr "Новости"
+msgstr "Новость"
 
-#: .\templates\flatpages\default.html:51
+#: .\templates\flatpages\default.html:68
 msgid "Articles"
 msgstr "Статьи"
 
-#: .\templates\flatpages\default.html:54
+#: .\templates\flatpages\default.html:71
 msgid "Search"
 msgstr "Поиск"
 
-#: .\templates\flatpages\default.html:57
+#: .\templates\flatpages\default.html:74
 msgid "Create"
 msgstr "Создать"
 
-#: .\templates\flatpages\default.html:60
+#: .\templates\flatpages\default.html:77
 msgid "Contact"
 msgstr "Контакты"
 
-#: .\templates\flatpages\default.html:63
+#: .\templates\flatpages\default.html:80
 msgid "Login"
 msgstr "Войти"
 
-#: .\templates\flatpages\default.html:66
+#: .\templates\flatpages\default.html:83
 msgid "Logout"
 msgstr "Выйти"
+
+#: .\templates\news.html:29 .\templates\search.html:46
+msgid "All news"
+msgstr "Все новости"
+
+#: .\templates\news.html:38
+msgid "Add post"
+msgstr "Добавить пост"
+
+#: .\templates\news.html:43
+msgid "Type"
+msgstr "Тип"
+
+#: .\templates\news.html:44
+msgid "Header"
+msgstr "Оглавление"
+
+#: .\templates\news.html:45 .\templates\search.html:65
+msgid "Publication date"
+msgstr "Дата публикации"
+
+#: .\templates\news.html:46 .\templates\search.html:66
+msgid "Content"
+msgstr "Содержание"
+
+#: .\templates\news.html:50
+msgid "Actions"
+msgstr "Действия"
+
+#: .\templates\news.html:70
+msgid "Change"
+msgstr "Изменить"
+
+#: .\templates\news.html:73
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\templates\news.html:75
+msgid "Read"
+msgstr "Читать"
+
+#: .\templates\news.html:81 .\templates\search.html:77
+msgid "No, news!"
+msgstr "Нет, новостей!"

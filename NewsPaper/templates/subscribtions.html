@@ -1,0 +1,33 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+<h1>Мои подписки</h1>
+
+<h2>Доступные категории</h2>
+<ul>
+    {% for category in all_categories %}
+    <li>
+        {{ category.name }}
+        <form method="post" action="{% url 'subscribe' category.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-success">Подписаться</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Текущие подписки</h2>
+<ul>
+    {% for subscription in subscriptions %}
+    <li>
+        {{ subscription.category.name }} (с {{ subscription.date_subscribed|date:"d.m.Y" }})
+        <form method="post" action="{% url 'subscribe' subscription.category.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="unsubscribe">
+            <button type="submit" class="btn btn-sm btn-danger">Отписаться</button>
+        </form>
+    </li>
+    {% empty %}
+    <li>У вас нет активных подписок</li>
+    {% endfor %}
+</ul>
+{% endblock %}

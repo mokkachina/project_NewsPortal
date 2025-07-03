@@ -1,0 +1,117 @@
+2023-01-06 11:37:00,718 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 11:37:02,430 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 11:41:34,097 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 11:41:35,063 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 15:58:25,048 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:02:30,090 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:02:34,048 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 16:03:29,024 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\news\models.py changed, reloading.
+2023-01-06 16:03:29,821 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:04:53,091 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\news\models.py changed, reloading.
+2023-01-06 16:04:53,951 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:04:54,224 INFO basehttp "GET /29 HTTP/1.1" 200 2542
+2023-01-06 16:04:57,116 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 16:10:44,232 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 16:10:45,324 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:12:10,223 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 16:12:11,223 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:12:13,447 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 16:12:15,416 INFO basehttp "GET /7 HTTP/1.1" 200 3134
+2023-01-06 16:12:18,325 INFO basehttp "GET /news/ HTTP/1.1" 200 8600
+2023-01-06 16:13:07,915 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\news\models.py changed, reloading.
+2023-01-06 16:13:08,681 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:13:49,794 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 16:13:50,511 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:14:26,485 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 16:14:27,195 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:16:42,707 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 16:16:43,410 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:18:52,612 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\news\models.py changed, reloading.
+2023-01-06 16:18:53,714 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 16:59:53,230 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 16:59:54,246 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:00:16,691 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:00:17,676 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:21:36,670 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:21:37,643 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:23:13,440 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:24:29,143 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:24:30,569 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 17:24:32,520 INFO basehttp "GET /?page=2 HTTP/1.1" 200 6233
+2023-01-06 17:24:34,385 INFO basehttp "GET /30 HTTP/1.1" 200 2531
+2023-01-06 17:25:47,613 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-01-06 17:25:48,553 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:26:37,252 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-01-06 17:26:38,170 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:27:08,716 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 17:27:11,232 INFO basehttp "GET /categories/3/ HTTP/1.1" 200 5099
+2023-01-06 17:27:14,110 INFO basehttp "GET /news/ HTTP/1.1" 200 8600
+2023-01-06 17:35:09,002 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:35:28,558 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 17:35:30,989 INFO basehttp "GET /10 HTTP/1.1" 200 2982
+2023-01-06 17:40:59,941 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:41:00,911 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:41:40,423 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:44:40,002 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:45:06,306 INFO basehttp "GET /30 HTTP/1.1" 200 2531
+2023-01-06 17:45:21,291 INFO basehttp "GET /news/ HTTP/1.1" 200 8600
+2023-01-06 17:46:37,574 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:46:38,499 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:46:40,234 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 17:49:07,897 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:49:46,067 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:49:54,785 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 17:49:56,833 INFO basehttp "GET /29 HTTP/1.1" 200 2542
+2023-01-06 17:50:35,308 INFO basehttp "GET /news/ HTTP/1.1" 200 8600
+2023-01-06 17:50:38,019 INFO basehttp "GET /categories/3/ HTTP/1.1" 200 5099
+2023-01-06 17:54:09,085 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:54:10,054 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:55:10,929 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:55:11,913 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:55:26,465 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 17:55:28,645 INFO basehttp "GET /29 HTTP/1.1" 200 2542
+2023-01-06 17:59:22,531 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 17:59:23,581 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 17:59:25,599 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 18:01:59,105 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 18:02:00,058 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 18:02:02,679 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 18:02:04,689 INFO basehttp "GET /6 HTTP/1.1" 200 3113
+2023-01-06 18:03:18,748 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 18:03:19,670 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 18:04:57,793 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 18:11:58,200 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 18:12:38,293 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 18:13:15,355 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 18:13:18,011 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 18:13:20,279 INFO basehttp "GET /?page=2 HTTP/1.1" 200 6233
+2023-01-06 18:13:22,217 INFO basehttp "GET /categories/2/ HTTP/1.1" 200 3894
+2023-01-06 18:13:26,603 INFO basehttp "GET /news/ HTTP/1.1" 200 8600
+2023-01-06 18:14:24,035 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 18:14:24,964 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 18:14:30,667 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 18:14:33,664 INFO basehttp "GET /news/ HTTP/1.1" 200 8600
+2023-01-06 18:14:36,236 INFO basehttp "GET /accounts/login/ HTTP/1.1" 200 1676
+2023-01-06 18:17:36,693 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 18:17:37,674 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 18:20:19,733 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\news\models.py changed, reloading.
+2023-01-06 18:20:20,481 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 18:20:43,005 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\news\models.py changed, reloading.
+2023-01-06 18:20:43,941 INFO autoreload Watching for file changes with StatReloader
+2023-01-06 18:20:52,980 INFO basehttp "GET / HTTP/1.1" 200 8600
+2023-01-06 18:25:39,826 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-06 18:25:40,899 INFO autoreload Watching for file changes with StatReloader
+2023-01-07 09:48:23,600 INFO autoreload Watching for file changes with StatReloader
+2023-01-07 09:49:03,348 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-07 09:49:04,203 INFO autoreload Watching for file changes with StatReloader
+2023-01-07 09:50:41,272 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-07 09:50:42,247 INFO autoreload Watching for file changes with StatReloader
+2023-01-07 09:53:49,943 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-07 09:53:50,896 INFO autoreload Watching for file changes with StatReloader
+    2023-01-07 09:55:27,152 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-07 09:55:28,059 INFO autoreload Watching for file changes with StatReloader
+2023-01-07 09:57:01,521 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-07 09:57:02,488 INFO autoreload Watching for file changes with StatReloader
+2023-01-07 10:00:21,763 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-01-07 10:13:14,027 INFO autoreload Watching for file changes with StatReloader
+2023-01-07 10:14:12,537 INFO autoreload C:\Users\work\PycharmProjects\project_NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.

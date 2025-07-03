@@ -15,6 +15,12 @@ from django.contrib.auth.decorators import login_required
 import logging
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext_lazy
+from django.utils import timezone
+from django.shortcuts import redirect
+
+
+import pytz #  импортируем стандартный модуль для работы с часовыми поясами
+
 
 logger = logging.getLogger(__name__)
 
@@ -42,6 +48,9 @@ class NewsPaper(ListView):
     context_object_name = 'news'
     paginate_by = 10
 
+
+
+
     def get_queryset(self):
         queryset = super().get_queryset()
         self.filterset = PostFilter(self.request.GET, queryset)
@@ -49,15 +58,28 @@ class NewsPaper(ListView):
 
 
     def get_context_data(self, **kwargs):
+        current_time = timezone.localtime(timezone.now())
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
-        # context['time_now'] = datetime.utcnow()
-        # context['next_sale'] = None
+        context['current_time'] = current_time
+        context['timezones'] = pytz.common_timezones
         # pprint(context)
         return context
 
+    # def set_timezone(self, request):
+    #     if request.method == 'POST':
+    #         request.session['django_timezone'] = request.POST['timezone']
+    #         return redirect('/')
+    #     else:
+    #         return render(request, 'news.html', {'timezones': pytz.common_timezones})
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/')
+
     def pageNotFound(request, exception):
         return HttpResponseNotFound('<h1>Страница не найдена </h1>')
+
+
 
 class ArticlesPaper(ListView):
     queryset = Post.objects.filter(categoryType='AR')
@@ -97,17 +119,25 @@ class PostSearch(ListView):
     model = Post
     # ordering = ['-date']
     template_name = 'search.html'
-    context_object_name = 'title'
+    context_object_name = 'search'
     paginate_by = 10
     def get_queryset(self):
         queryset = super().get_queryset()
         self.filterset = PostFilter(self.request.GET, queryset)
         return self.filterset.qs
     def get_context_data(self, **kwargs):
+        current_time = timezone.localtime(timezone.now())
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
-        context['time_now'] = datetime.utcnow()
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
+        # datetime.utcnow()
         return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/search')
+
 
 class PostCreate(PermissionRequiredMixin, CreateView):
     permission_required = ('news.add_post',)
@@ -157,14 +187,42 @@ class CategoryListView(ListView):
         context['is_not_subscriber'] = self.request.user not in self.postCategory.subscribers.all()
         context['category'] = self.postCategory
         return context
+
+
 @login_required
 def subscribe(request, pk):
-    user = request.user
-    category = Category.objects.get(id=pk)
-    category.subscribers.add(user)
+    category = get_object_or_404(Category, id=pk)
 
-    message = 'Вы подписались на: '
-    return render(request, 'subscribe.html', {'message': message, 'category': category})
+    if request.method == 'POST':
+        action = request.POST.get('action', 'subscribe')
+
+        if action == 'subscribe':
+            Subscription.objects.get_or_create(
+                user=request.user,
+                category=category,
+                defaults={'subscribed': True}
+            )
+        elif action == 'unsubscribe':
+            Subscription.objects.filter(
+                user=request.user,
+                category=category
+            ).update(subscribed=False)
+
+    return redirect('subscriptions')
+
+class SubscriptionView(LoginRequiredMixin, ListView):
+    model = Subscription
+    template_name = 'subscribtions.html'  # Указываем явный путь к шаблону
+    context_object_name = 'subscriptions'
+
+    def get_queryset(self):
+        return Subscription.objects.filter(user=self.request.user, subscribed=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['all_categories'] = Category.objects.all()
+        return context
+
 # @login_required
 # def subscribe_delete(request, pk):
 #     user = request.user
