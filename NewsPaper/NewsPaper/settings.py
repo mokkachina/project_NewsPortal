@@ -140,7 +140,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'Europe/Moscow'
+
 
 USE_I18N = True
 
@@ -215,7 +216,6 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugTrue',
         },
     },
-
     'formatters': {
         'debug_console': {
             'format': '%(levelname)s %(asctime)s %(message)s'
@@ -229,16 +229,16 @@ LOGGING = {
         'general_log': {
             'format': '%(asctime)s %(levelname)s %(module)s %(message)s'
         },
-
         'security_log': {
             'format': '%(asctime)s %(levelname)s  %(module)s  %(message)s'
         },
         'mail_admins': {
             'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s'
         },
+        'newsletter_log': {
+            'format': '%(asctime)s [NEWSLETTER] %(levelname)s %(message)s'
+        },
     },
-
-
     'handlers': {
         'debug_console': {
             'level': 'DEBUG',
@@ -263,20 +263,29 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': 'errors.log',
             'formatter': 'error_critical',
-            # 'filters': ['require_debug_false'],
         },
         'security_log': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
             'filename': 'security.log',
             'formatter': 'security_log',
-            # 'filters': ['require_debug_false'],
         },
-         'mail_admins': {
+        'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'newsletter_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/newsletter.log',
+            'formatter': 'newsletter_log',
+        },
+        'newsletter_console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'newsletter_log',
+        },
     },
     'loggers': {
         'django': {
@@ -308,6 +317,15 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False
         },
-
+        'news.tasks': {
+            'handlers': ['newsletter_file', 'newsletter_console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'news.management': {
+            'handlers': ['newsletter_file', 'newsletter_console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
     },
 }

@@ -23,6 +23,7 @@ urlpatterns = [
     path('categories/<int:pk>/', CategoryListView.as_view(), name='category_list'),
     path('subscriptions/', SubscriptionView.as_view(), name='subscriptions'),
     path('subscribe/<int:pk>/', subscribe, name='subscribe'),
+    path('<int:pk>/', NewsDetail.as_view(), name='new_detail')
     # path('categories/<int:pk>/subscribers', subscribe_delete, name='subscribe_delete'),
    # path('', IndexView.as_view()),
 ]
